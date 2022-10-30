@@ -23,7 +23,11 @@ RUN ln -s /usr/bin/python3 /usr/local/bin/python
 # 下载
 RUN mkdir /root/123
 WORKDIR /root/123
+# 下载--单个文件
 # RUN  ["youtube-dl", "https://www.youtube.com/watch?v=-A-SYwDaksg"]   #这种写法将视频链接写死在Dockerfile中了，推荐使用下面的方法将视频链接单独提取到一个文件videos-list.txt中
+RUN  ["youtube-dl",'-o','linux-video-三立',"https://www.youtube.com/watch?v=KeMlcV_Cf_k"]
+
+#下载--多个文件
 COPY videos-list.txt /root/123/
 RUN ["youtube-dl", "-a","videos-list.txt"]
 
