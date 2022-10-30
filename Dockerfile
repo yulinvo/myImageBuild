@@ -21,6 +21,8 @@ RUN rpm -ivh --force /usr/local/src/*
 RUN ln -s /usr/bin/python3 /usr/local/bin/python
 
 # 下载
+RUN mkdir /root/123
+WORKDIR /root/123
 RUN  ["youtube-dl", "https://www.youtube.com/watch?v=-A-SYwDaksg"]
 
 # CMD
