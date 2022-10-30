@@ -27,11 +27,12 @@ WORKDIR /root/123
 # RUN  ["youtube-dl", "https://www.youtube.com/watch?v=-A-SYwDaksg"]   #这种写法将视频链接写死在Dockerfile中了，推荐使用下面的方法将视频链接单独提取到一个文件videos-list.txt中
 # 下载--单个文件--修改名称（第一种方式不成功，第二种方式能成功，不清楚啥原因）
 # RUN  ["youtube-dl",'-o','"linux-video-三立"',"https://www.youtube.com/watch?v=KeMlcV_Cf_k"]
-# RUN youtube-dl -o "linux-video-三立" https://www.youtube.com/watch?v=KeMlcV_Cf_k
-RUN youtube-dl -F https://www.youtube.com/watch?v=-A-SYwDaksg &>/root/123/a
-RUN youtube-dl -F https://www.youtube.com/watch?v=KeMlcV_Cf_k &>/root/123/b
-RUN youtube-dl -F https://www.youtube.com/watch?v=tv3xWV5O7xo &>/root/123/c
-RUN youtube-dl -F https://www.youtube.com/watch?v=d2ep7g7QIvY &>/root/123/d
+RUN youtube-dl -o "linux-video-三立.mp4" -f 160 https://www.youtube.com/watch?v=KeMlcV_Cf_k
+
+# RUN youtube-dl -F https://www.youtube.com/watch?v=-A-SYwDaksg &>/root/123/a
+# RUN youtube-dl -F https://www.youtube.com/watch?v=KeMlcV_Cf_k &>/root/123/b
+# RUN youtube-dl -F https://www.youtube.com/watch?v=tv3xWV5O7xo &>/root/123/c
+# RUN youtube-dl -F https://www.youtube.com/watch?v=d2ep7g7QIvY &>/root/123/d
 
 
 #下载--多个文件
