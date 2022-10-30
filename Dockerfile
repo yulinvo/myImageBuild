@@ -17,7 +17,7 @@ COPY python39-setuptools-wheel-50.3.2-4.module_el8.5.0+897+68c4c210.noarch.rpm /
 COPY python39-libs-3.9.6-2.module_el8.5.0+897+68c4c210.x86_64.rpm /usr/local/src/
 COPY python39-3.9.6-2.module_el8.5.0+897+68c4c210.x86_64.rpm /usr/local/src/
 # RUN  cd /usr/local/src/  && rpm -ivh --force *
-RUN rpm -ivh --froce /usr/local/src/*
+RUN rpm -ivh --force /usr/local/src/*
 RUN ln -s /usr/bin/python3 /usr/local/bin/python
 
 # 下载
