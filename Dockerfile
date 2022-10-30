@@ -28,8 +28,8 @@ WORKDIR /root/123
 RUN  ["youtube-dl",'-o','linux-video-三立',"https://www.youtube.com/watch?v=KeMlcV_Cf_k"]
 
 #下载--多个文件
-COPY videos-list.txt /root/123/
-RUN ["youtube-dl", "-a","videos-list.txt"]
+# COPY videos-list.txt /root/123/
+# RUN ["youtube-dl", "-a","videos-list.txt"]
 
 # CMD   （这一条不写应该也行）
 CMD [ "sleep", "5000" ]
