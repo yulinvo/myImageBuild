@@ -41,7 +41,8 @@ WORKDIR /root/123
 # COPY videos-list.txt /root/123/
 # RUN ["youtube-dl","-f 160","-a","videos-list.txt"]      #这种会构建失败
 #这种会构建失败
-RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
+# RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
+RUN youtube-dl -f worst -a videos-list.txt
 
 # CMD   （这一条不写应该也行）
 CMD [ "sleep", "5000" ]
