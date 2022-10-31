@@ -24,13 +24,15 @@ RUN ln -s /usr/bin/python3 /usr/local/bin/python
 RUN mkdir /root/123
 WORKDIR /root/123
 # 下载--单个文件
+# RUN youtube-dl   https://www.youtube.com/watch?v=tv3xWV5O7xo
 # RUN  ["youtube-dl", "https://www.youtube.com/watch?v=-A-SYwDaksg"]   #这种写法将视频链接写死在Dockerfile中了，推荐使用下面的方法将视频链接单独提取到一个文件videos-list.txt中
+# RUN youtube-dl  -f worst https://www.youtube.com/watch?v=tv3xWV5O7xo
+
 # 下载--单个文件--修改名称（第一种方式不成功，第二种方式能成功，不清楚啥原因）
 # RUN  ["youtube-dl",'-o','"linux-video-三立"',"https://www.youtube.com/watch?v=KeMlcV_Cf_k"]
 # RUN youtube-dl -o "linux-video-三立" -f 133 https://www.youtube.com/watch?v=KeMlcV_Cf_k    #使用-f 133/160下载的文件都没有声音
-# RUN youtube-dl  -f worst https://www.youtube.com/watch?v=tv3xWV5O7xo
-# RUN youtube-dl   https://www.youtube.com/watch?v=tv3xWV5O7xo
 
+# 查看视频支持的格式
 # RUN youtube-dl -F https://www.youtube.com/watch?v=-A-SYwDaksg &>/root/123/a
 # RUN youtube-dl -F https://www.youtube.com/watch?v=KeMlcV_Cf_k &>/root/123/b
 # RUN youtube-dl -F https://www.youtube.com/watch?v=tv3xWV5O7xo &>/root/123/c
@@ -39,14 +41,14 @@ WORKDIR /root/123
 
 #下载--多个文件
 COPY videos-list.txt /root/123/
+
+# 这两种写法都能构建成功：RUN ["youtube-dl","-f worst","-a","videos-list.txt"] 和 RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]  
 RUN ["youtube-dl","-f worst","-a","videos-list.txt"]
-#这种会构建失败
-# RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
 
-#  -f参数和-a参数的前后顺序无所谓
-# RUN youtube-dl -f worst -a videos-list.txt             
 
-# RUN youtube-dl  -a videos-list.txt -f worst         #成功         
+#  -f参数和-a参数的前后顺序无所谓，都能成功 （RUN youtube-dl  -a videos-list.txt -f worst 和 RUN youtube-dl -f worst -a videos-list.txt）
+# RUN youtube-dl -f worst -a videos-list.txt
+
 
 # CMD   （这一条不写应该也行）
 CMD [ "sleep", "5000" ]
