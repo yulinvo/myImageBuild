@@ -39,9 +39,9 @@ WORKDIR /root/123
 
 #下载--多个文件
 COPY videos-list.txt /root/123/
-# RUN ["youtube-dl","-f 160","-a","videos-list.txt"]      #这种会构建失败
+RUN ["youtube-dl","-f worst","-a","videos-list.txt"]
 #这种会构建失败
-RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
+# RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
 
 #  -f参数和-a参数的前后顺序无所谓
 # RUN youtube-dl -f worst -a videos-list.txt             
