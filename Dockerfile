@@ -38,13 +38,15 @@ WORKDIR /root/123
 
 
 #下载--多个文件
-# COPY videos-list.txt /root/123/
+COPY videos-list.txt /root/123/
 # RUN ["youtube-dl","-f 160","-a","videos-list.txt"]      #这种会构建失败
 #这种会构建失败
 # RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]       
 # RUN youtube-dl -f worst -a videos-list.txt                  #提示ERROR: batch file videos-list.txt could not be read
-# RUN youtube-dl  -a videos-list.txt -f worst             #提示 ERROR: batch file videos-list.txt could not be read
-RUN youtube-dl  -a videos-list.txt
+
+#提示 ERROR: batch file videos-list.txt could not be read
+RUN youtube-dl  -a videos-list.txt -f worst             
+# RUN youtube-dl  -a videos-list.txt
 
 # CMD   （这一条不写应该也行）
 CMD [ "sleep", "5000" ]
