@@ -30,6 +30,8 @@ WORKDIR /root/123
 
 # 下载--单个文件--修改名称（第一种方式不成功，第二种方式能成功，不清楚啥原因）
 # RUN  ["youtube-dl",'-o','"linux-video-三立"',"https://www.youtube.com/watch?v=KeMlcV_Cf_k"]
+RUN  ["youtube-dl",'-f','worst','-o','"脏弹是什么，乌克兰能做出来吗.mp4"',"https://www.youtube.com/watch?v=oJRK6Ko_ot0"]
+
 # RUN youtube-dl -o "linux-video-三立" -f 133 https://www.youtube.com/watch?v=KeMlcV_Cf_k    #使用-f 133/160下载的文件都没有声音
 
 # 查看视频支持的格式
@@ -43,7 +45,7 @@ WORKDIR /root/123
 COPY videos-list.txt /root/123/
 
 # 这两种写法都能构建成功：RUN ["youtube-dl","-f worst","-a","videos-list.txt"] 和 RUN ["youtube-dl","-f", "worst","-a","videos-list.txt"]  
-RUN ["youtube-dl","-f worst","-a","videos-list.txt"]
+#RUN ["youtube-dl","-f worst","-a","videos-list.txt"]
 
 
 #  -f参数和-a参数的前后顺序无所谓，都能成功 （RUN youtube-dl  -a videos-list.txt -f worst 和 RUN youtube-dl -f worst -a videos-list.txt）
